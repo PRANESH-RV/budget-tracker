@@ -3,1356 +3,580 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Budget — Your money, in plain language.</title>
+<title>Pranesh R V | Computer Science Engineering Student &amp; Developer</title>
+<meta name="description" content="Portfolio of Pranesh R V — Computer Science Engineering Student,UI/UX Designer, Web Developer,Devops Engineering,cloud computing ">
+<meta name="theme-color" content="#0a0a12">
+
+<!-- Google Fonts: Poppins -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#F5F6F4; --card:#FFFFFF; --ink:#16181C; --muted:#6B7178; --border:#E7E8E5;
-    --green:#1E8E5A; --green-soft:#E4F3EA;
-    --red:#D64545; --red-soft:#FBE7E5;
-    --amber-soft:#F7EBD9; --amber-ink:#8A5A12;
-    --blue:#4C7CE0; --blue-soft:#E7EEFA;
-    --purple:#8C5FD1;
-    --shadow:0 1px 2px rgba(0,0,0,0.03);
-  }
-  [data-theme="dark"]{
-    --bg:#14161A; --card:#1D2024; --ink:#EFF1EE; --muted:#9AA0A6; --border:#2B2F34;
-    --green:#37C084; --green-soft:#173327;
-    --red:#EF6B63; --red-soft:#3A2222;
-    --amber-soft:#3A311C; --amber-ink:#E4B85B;
-    --blue:#7DA0F0; --blue-soft:#1B2740;
-    --purple:#B096E8;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    background:var(--bg); color:var(--ink);
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
-    padding:28px 24px 70px;
-    -webkit-font-smoothing:antialiased;
-    transition:background .2s ease, color .2s ease;
-  }
-  .wrap{max-width:1200px; margin:0 auto;}
-  .hidden{display:none !important;}
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  /* Topbar */
-  .topbar{display:flex; align-items:center; justify-content:space-between; margin-bottom:22px; flex-wrap:wrap; gap:14px;}
-  .brand{display:flex; align-items:center; gap:12px;}
-  .brand-mark{width:42px; height:42px; border-radius:50%; background:var(--green); color:#fff; display:flex; align-items:center; justify-content:center; font-size:19px; font-weight:700; flex-shrink:0;}
-  .brand h1{font-size:19px; font-weight:700; margin:0; letter-spacing:-0.2px;}
-  .brand p{margin:1px 0 0; color:var(--muted); font-size:13px;}
-  .topbar-controls{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
-  .user-chip{display:flex; align-items:center; gap:8px; font-size:13px; color:var(--muted); padding:6px 4px;}
-  .user-chip b{color:var(--ink);}
-  .icon-btn{
-    width:38px; height:38px; border-radius:10px; border:1px solid var(--border); background:var(--card);
-    display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; color:var(--ink);
-  }
-  .icon-btn:hover{filter:brightness(0.97);}
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  select{font-family:'Inter',sans-serif; font-size:13.5px; font-weight:500; border:1px solid var(--border); background:var(--card); color:var(--ink); padding:9px 14px; border-radius:10px; cursor:pointer;}
-  input[type=text], input[type=number], input[type=date], input[type=password]{
-    font-family:'Inter',sans-serif; font-size:13.5px; border:1px solid var(--border); background:var(--card); color:var(--ink); padding:9px 12px; border-radius:10px;
-  }
-  select:focus, input:focus{outline:2px solid var(--green); outline-offset:1px;}
-
-  .btn{font-family:'Inter',sans-serif; font-weight:600; font-size:13.5px; border:none; background:var(--green); color:#fff; padding:10px 18px; border-radius:10px; cursor:pointer; display:inline-flex; align-items:center; gap:6px; transition:filter .12s ease, transform .12s ease; white-space:nowrap;}
-  .btn:hover{filter:brightness(1.08); transform:translateY(-1px);}
-  .btn:active{transform:translateY(0);}
-  .btn-ghost{background:transparent; color:var(--ink); border:1px solid var(--border);}
-  .btn-sm{padding:7px 12px; font-size:12.5px; border-radius:8px;}
-  .btn-outline-green{background:transparent; color:var(--green); border:1px solid var(--green);}
-
-  .card{background:var(--card); border-radius:16px; padding:20px 22px; border:1px solid var(--border); box-shadow:var(--shadow);}
-  .card-title{font-size:15px; font-weight:700; margin:0; letter-spacing:-0.1px;}
-  .card-sub{font-size:12px; color:var(--muted); margin-top:2px;}
-  .card-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; flex-wrap:wrap; gap:10px;}
-
-  .grid-stats{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:14px;}
-  .stat-label{display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;}
-  .stat-label span.txt{color:var(--muted); font-size:13px; font-weight:500;}
-  .stat-icon{width:30px; height:30px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0;}
-  .stat-value{font-size:26px; font-weight:800; letter-spacing:-0.5px;}
-  .stat-sub{font-size:12px; color:var(--muted); margin-top:5px;}
-  .pos{color:var(--green);} .neg{color:var(--red);}
-
-  .grid-main{display:grid; grid-template-columns:2fr 1fr; gap:14px; margin-bottom:14px;}
-  .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;}
-  .grid-3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-bottom:14px;}
-
-  .limit-field{display:flex; align-items:center; gap:8px; font-size:13px; color:var(--muted);}
-  .limit-field input{width:90px;}
-
-  .budget-amount{font-size:28px; font-weight:800;}
-  .budget-of{color:var(--muted); font-size:14px; font-weight:500;}
-  .budget-left{float:right; font-size:13px; color:var(--green); font-weight:700; margin-top:9px;}
-  .bar-track{height:9px; background:var(--border); border-radius:6px; margin:14px 0 22px; overflow:hidden;}
-  .bar-fill{height:100%; border-radius:6px; background:var(--green); transition:width .3s ease;}
-  .bar-fill.over{background:var(--red);}
-
-  svg.trend, svg.compare{width:100%; height:150px; display:block;}
-  .trend text, .compare text{font-family:'Inter',sans-serif; font-size:10.5px; fill:var(--muted);}
-
-  .insight{display:flex; gap:10px; padding:13px; border-radius:12px; margin-bottom:10px; align-items:flex-start;}
-  .insight:last-child{margin-bottom:0;}
-  .insight .glyph{width:22px; height:22px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:12px; flex-shrink:0; margin-top:1px;}
-  .insight-title{font-weight:700; font-size:13px;}
-  .insight-sub{font-size:12px; color:var(--muted); margin-top:2px; line-height:1.4;}
-  .insight.warn{background:var(--amber-soft);} .insight.warn .insight-title{color:var(--amber-ink);} .insight.warn .glyph{background:var(--amber-soft); color:var(--amber-ink); filter:brightness(0.9);}
-  .insight.good{background:var(--green-soft);} .insight.good .insight-title{color:var(--green);} .insight.good .glyph{background:var(--green-soft); color:var(--green); filter:brightness(0.9);}
-  .insight.neutral{background:var(--bg);} .insight.neutral .insight-title{color:var(--ink);} .insight.neutral .glyph{background:var(--border); color:var(--muted);}
-  .insight.bad{background:var(--red-soft);} .insight.bad .insight-title{color:var(--red);} .insight.bad .glyph{background:var(--red-soft); color:var(--red); filter:brightness(0.9);}
-
-  .cat-row{display:flex; align-items:center; gap:10px; margin-bottom:13px;}
-  .cat-row:last-child{margin-bottom:0;}
-  .cat-name{width:96px; flex-shrink:0; font-size:12.5px; font-weight:500; display:flex; align-items:center; gap:6px;}
-  .cat-dot{width:9px; height:9px; border-radius:50%; flex-shrink:0;}
-  .cat-bar-track{flex:1; height:8px; background:var(--border); border-radius:5px; overflow:hidden;}
-  .cat-bar-fill{height:100%; border-radius:5px;}
-  .cat-amt{width:76px; text-align:right; font-size:12.5px; font-weight:700; flex-shrink:0;}
-  .empty-state{text-align:center; color:var(--muted); font-size:13px; padding:30px 10px;}
-  .went-row{display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--border); font-size:13px;}
-  .went-row:last-child{border-bottom:none;}
-  .went-name{font-weight:600;} .went-meta{color:var(--muted); font-size:11.5px; margin-top:2px;}
-
-  /* Category budgets */
-  .cbud-row{display:flex; align-items:center; gap:10px; margin-bottom:12px;}
-  .cbud-row:last-child{margin-bottom:0;}
-  .cbud-name{width:90px; flex-shrink:0; font-size:12.5px; font-weight:500;}
-  .cbud-bar-track{flex:1; height:7px; background:var(--border); border-radius:5px; overflow:hidden;}
-  .cbud-bar-fill{height:100%; border-radius:5px; background:var(--green);}
-  .cbud-bar-fill.over{background:var(--red);}
-  .cbud-input{width:70px; flex-shrink:0;}
-  .cbud-spent{width:64px; text-align:right; font-size:11.5px; color:var(--muted); flex-shrink:0;}
-
-  /* Goals */
-  .goal{padding:12px; border:1px solid var(--border); border-radius:12px; margin-bottom:10px;}
-  .goal:last-child{margin-bottom:0;}
-  .goal-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;}
-  .goal-name{font-weight:700; font-size:13.5px;}
-  .goal-amt{font-size:12px; color:var(--muted);}
-  .goal-actions{display:flex; gap:6px; margin-top:10px;}
-  .add-goal-row{display:flex; gap:8px; margin-top:14px;}
-  .add-goal-row input{flex:1; min-width:0;}
-
-  /* Pie chart */
-  .pie-wrap{display:flex; align-items:center; gap:18px; flex-wrap:wrap;}
-  .pie{width:140px; height:140px; border-radius:50%; flex-shrink:0; position:relative;}
-  .pie::after{content:''; position:absolute; inset:22px; border-radius:50%; background:var(--card);}
-  .pie-legend{flex:1; min-width:140px;}
-  .legend-row{display:flex; align-items:center; gap:8px; font-size:12px; margin-bottom:8px;}
-  .legend-row:last-child{margin-bottom:0;}
-  .legend-row .cat-dot{width:8px; height:8px;}
-  .legend-name{flex:1;}
-  .legend-pct{color:var(--muted); font-weight:600;}
-
-  /* Recurring */
-  .rec-row{display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid var(--border); font-size:13px;}
-  .rec-row:last-child{border-bottom:none;}
-  .rec-main{flex:1;}
-  .rec-title{font-weight:600;}
-  .rec-meta{color:var(--muted); font-size:11.5px; margin-top:2px;}
-  .switch{position:relative; width:38px; height:22px; flex-shrink:0;}
-  .switch input{opacity:0; width:0; height:0;}
-  .slider{position:absolute; inset:0; background:var(--border); border-radius:22px; cursor:pointer; transition:.2s;}
-  .slider::before{content:''; position:absolute; width:16px; height:16px; left:3px; top:3px; background:#fff; border-radius:50%; transition:.2s;}
-  .switch input:checked + .slider{background:var(--green);}
-  .switch input:checked + .slider::before{transform:translateX(16px);}
-
-  /* Transactions */
-  .tx-toolbar{display:flex; gap:10px; margin-bottom:16px; flex-wrap:wrap;}
-  .tx-toolbar input[type=text]{flex:1; min-width:200px;}
-  table{width:100%; border-collapse:collapse; font-size:13px;}
-  th{text-align:left; color:var(--muted); font-weight:600; font-size:11.5px; padding:0 10px 10px; border-bottom:1px solid var(--border);}
-  td{padding:13px 10px; border-bottom:1px solid var(--border); vertical-align:middle;}
-  tr:last-child td{border-bottom:none;}
-  .tag{display:inline-block; padding:4px 10px; border-radius:20px; font-size:11px; font-weight:600; background:var(--bg);}
-  .amt-cell{font-weight:700; text-align:right; white-space:nowrap;}
-  .row-actions{display:flex; gap:4px; justify-content:flex-end;}
-  .icon-mini{background:none; border:none; color:var(--muted); cursor:pointer; font-size:14px; padding:4px;}
-  .icon-mini:hover{color:var(--ink);}
-  .icon-mini.danger:hover{color:var(--red);}
-  .footnote{text-align:center; color:var(--muted); font-size:12px; margin-top:22px;}
-  .recur-flag{font-size:11px; color:var(--blue); margin-left:6px;}
-
-  /* Modal */
-  .overlay{position:fixed; inset:0; background:rgba(20,22,20,0.5); display:none; align-items:center; justify-content:center; z-index:50; padding:20px;}
-  .overlay.open{display:flex;}
-  .modal{background:var(--card); border-radius:18px; padding:26px; width:100%; max-width:420px; box-shadow:0 20px 50px -20px rgba(0,0,0,0.5); max-height:92vh; overflow-y:auto;}
-  .modal h2{font-size:18px; font-weight:700; margin:0 0 18px;}
-  .field{margin-bottom:14px;}
-  .field label{display:block; font-size:11.5px; color:var(--muted); font-weight:600; margin-bottom:6px;}
-  .field input, .field select{width:100%;}
-  .type-toggle{display:flex; gap:8px;}
-  .type-toggle button{flex:1; padding:10px; border-radius:10px; border:1px solid var(--border); background:var(--card); font-family:'Inter',sans-serif; font-weight:600; font-size:13px; cursor:pointer; color:var(--ink);}
-  .type-toggle button.active.income{background:var(--green-soft); border-color:var(--green); color:var(--green);}
-  .type-toggle button.active.expense{background:var(--red-soft); border-color:var(--red); color:var(--red);}
-  .modal-actions{display:flex; gap:10px; margin-top:20px;}
-  .modal-actions .btn{flex:1; justify-content:center;}
-  .check-row{display:flex; align-items:center; gap:8px; font-size:13px; margin-top:4px;}
-  .check-row input{width:auto;}
-
-  /* Login */
-  .login-wrap{min-height:80vh; display:flex; align-items:center; justify-content:center;}
-  .login-card{background:var(--card); border:1px solid var(--border); border-radius:20px; padding:34px 30px; width:100%; max-width:380px; box-shadow:0 20px 50px -25px rgba(0,0,0,0.3); text-align:center;}
-  .login-card .brand-mark{margin:0 auto 14px;}
-  .login-card h2{font-size:20px; margin:0 0 4px;}
-  .login-card p{color:var(--muted); font-size:13px; margin:0 0 22px;}
-  .login-card .field{text-align:left;}
-  .login-links{display:flex; justify-content:space-between; align-items:center; gap:10px; margin:10px 0 0; font-size:12px;}
-  .login-link{color:var(--accent); text-decoration:none; background:none; border:none; padding:0; cursor:pointer; font-family:'Inter',sans-serif; font-weight:600;}
-  .login-link:hover{opacity:0.8;}
-  .login-note{font-size:11px; color:var(--muted); margin-top:14px; line-height:1.5;}
-  .login-error{color:var(--red); font-size:12.5px; margin-top:8px; display:none;}
-  .auth-inline-note{font-size:12px; color:var(--muted); margin-top:10px; line-height:1.5;}
-  .forgot-password{display:flex; justify-content:space-between; align-items:center; gap:10px; margin:10px 0 0; font-size:12px;}
-  .forgot-password input{flex:1; min-width:0;}
-  .forgot-password button{flex:1; padding:10px; border-radius:10px; border:1px solid var(--border); background:var(--card); font-family:'Inter',sans-serif; font-weight:600; font-size:13px; cursor:pointer; color:var(--ink);}
-  .forgot-password button:hover{opacity:0.8;}
-
-  @media (max-width:900px){
-    .grid-stats{grid-template-columns:repeat(2,1fr);}
-    .grid-main{grid-template-columns:1fr;}
-    .grid-2{grid-template-columns:1fr;}
-    .grid-3{grid-template-columns:1fr;}
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- LOGIN SCREEN -->
-<div class="login-wrap" id="loginScreen">
-  <div class="login-card">
-    <div class="brand-mark" style="width:52px;height:52px;font-size:22px;">₹</div>
-    <h2>Welcome to Budgetly</h2>
-    <p>Sign in to see your own money, in plain language.</p>
-    <div class="field">
-      <label>Your name</label>
-      <input type="text" id="loginName" placeholder="e.g. Pranesh" autocomplete="off">
-    </div>
-    <div class="field">
-      <label>PIN (optional, 4 digits)</label>
-      <input type="password" id="loginPin" placeholder="••••" maxlength="4" inputmode="numeric">
-    </div>
-    <div class="login-links">
-      <button type="button" class="login-link" id="forgotPasswordBtn">Forgot password</button>
-      <button type="button" class="login-link" id="newUserBtn">New user</button>
-    </div>
-    <button class="btn" style="width:100%; justify-content:center;" id="loginBtn">Continue</button>
-    <div class="login-error" id="loginError">That PIN doesn't match this name. Try again.</div>
-    <div class="login-note">This is a lightweight local sign-in — it separates each person's data by name in this browser, but it isn't a secure authentication system. Don't reuse a real password as your PIN.</div>
-  </div>
+<!-- ============ LOADER ============ -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-ring"></div>
+  <span class="loader-text">PRV</span>
 </div>
 
-<div class="overlay" id="authOverlay">
-  <div class="modal" style="max-width:420px;">
-    <h2 id="authTitle">Create account</h2>
-    <div class="field" id="authNameField">
-      <label>Full name</label>
-      <input type="text" id="authName" placeholder="Enter your name">
-    </div>
-    <div class="field" id="authPhoneField">
-      <label>Phone number</label>
-      <input type="tel" id="authPhone" placeholder="10-digit mobile number" maxlength="10" inputmode="numeric">
-    </div>
-    <div class="field" id="authPinField">
-      <label>Create PIN</label>
-      <input type="password" id="authPin" placeholder="••••" maxlength="4" inputmode="numeric">
-    </div>
-    <div class="field" id="authOtpField" style="display:none;">
-      <label>OTP</label>
-      <input type="text" id="authOtp" placeholder="Enter 6-digit OTP" maxlength="6" inputmode="numeric">
-    </div>
-    <div class="login-error" id="authError"></div>
-    <div class="auth-inline-note" id="authNote"></div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" id="authCancelBtn">Cancel</button>
-      <button class="btn" id="authPrimaryBtn">Continue</button>
-    </div>
-  </div>
-</div>
+<!-- ============ CUSTOM CURSOR ============ -->
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
 
-<!-- APP -->
-<div class="wrap hidden" id="appRoot">
+<!-- ============ SCROLL PROGRESS ============ -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
-  <div class="topbar">
-    <div class="brand">
-      <div class="brand-mark">₹</div>
-      <div>
-        <h1>Budgetly</h1>
-        <p>Your money, in plain language.</p>
-      </div>
-    </div>
-    <div class="topbar-controls">
-      <div class="user-chip">Signed in as <b id="userLabel"></b></div>
-      <button class="icon-btn" id="themeToggle" title="Toggle dark mode">🌙</button>
-      <select id="monthSelect"></select>
-      <button class="btn" id="addBtn">+ Add</button>
-      <button class="icon-btn" id="logoutBtn" title="Log out">⎋</button>
-    </div>
-  </div>
+<!-- ============ BACKGROUND PARTICLES ============ -->
+<canvas id="particleCanvas" aria-hidden="true"></canvas>
 
-  <div class="grid-stats" id="statsGrid"></div>
+<!-- ============ NAVBAR ============ -->
+<header class="navbar" id="navbar">
+  <nav class="nav-container">
+    <a href="#home" class="logo">PRV<span class="logo-dot">.</span></a>
 
-  <div class="grid-main">
-    <div class="card">
-      <div class="card-head">
-        <h2 class="card-title">Monthly budget</h2>
-        <div class="limit-field">Limit <input type="number" id="limitInput" min="0" step="1"></div>
-      </div>
-      <div>
-        <span class="budget-amount" id="budgetSpent">₹0.00</span>
-        <span class="budget-of" id="budgetOf">of ₹0.00</span>
-        <span class="budget-left" id="budgetLeft">₹0.00 left</span>
-      </div>
-      <div class="bar-track"><div class="bar-fill" id="budgetBar" style="width:0%"></div></div>
-      <svg class="trend" id="trendSvg" viewBox="0 0 640 150"></svg>
-    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#certifications" class="nav-link">Certifications</a></li>
+      <li><a href="#resume" class="nav-link">Resume</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
 
-    <div class="card">
-      <h2 class="card-title" style="margin-bottom:16px;">Insights</h2>
-      <div id="insightsBox"></div>
-    </div>
-  </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
 
-  <div class="grid-2">
-    <div class="card">
-      <div class="card-head"><h2 class="card-title">Category budgets</h2><span class="card-sub">This month</span></div>
-      <div id="catBudgetBox"></div>
-    </div>
-    <div class="card">
-      <div class="card-head"><h2 class="card-title">Savings goals</h2></div>
-      <div id="goalsBox"></div>
-      <div class="add-goal-row">
-        <input type="text" id="goalName" placeholder="Goal name">
-        <input type="number" id="goalTarget" placeholder="Target ₹" min="0" style="width:110px;">
-        <button class="btn btn-sm" id="addGoalBtn">Add</button>
-      </div>
-    </div>
-  </div>
+<main id="home">
 
-  <div class="grid-3">
-    <div class="card">
-      <h2 class="card-title" style="margin-bottom:16px;">Spending by category</h2>
-      <div id="catBox"></div>
-    </div>
-    <div class="card">
-      <h2 class="card-title" style="margin-bottom:16px;">Category split</h2>
-      <div id="pieBox"></div>
-    </div>
-    <div class="card">
-      <h2 class="card-title" style="margin-bottom:16px;">Where it went</h2>
-      <div id="wentBox"></div>
-    </div>
-  </div>
+  <!-- ============ HERO SECTION ============ -->
+  <section class="hero" id="hero">
+    <div class="hero-glow hero-glow-blue"></div>
+    <div class="hero-glow hero-glow-purple"></div>
 
-  <div class="card" style="margin-bottom:14px;">
-    <div class="card-head"><h2 class="card-title">Compare months</h2><span class="card-sub">Last 6 months</span></div>
-    <svg class="compare" id="compareSvg" viewBox="0 0 640 170"></svg>
-  </div>
-
-  <div class="card" style="margin-bottom:14px;">
-    <div class="card-head">
-      <h2 class="card-title">Recurring transactions</h2>
-      <button class="btn btn-sm btn-outline-green" id="addRecurringBtn">+ Add recurring</button>
-    </div>
-    <div id="recurringBox"></div>
-  </div>
-
-  <div class="card">
-    <div class="card-head">
-      <h2 class="card-title">Transactions</h2>
-      <div style="display:flex; gap:8px;">
-        <button class="btn btn-sm btn-ghost" id="exportBtn">Export CSV</button>
-        <button class="btn btn-sm" id="addBtn2">+ Add transaction</button>
-      </div>
-    </div>
-    <div class="tx-toolbar">
-      <input type="text" id="searchInput" placeholder="Search notes or categories">
-      <select id="typeFilter">
-        <option value="all">All types</option>
-        <option value="income">Income</option>
-        <option value="expense">Expense</option>
-      </select>
-      <select id="catFilter"><option value="all">All categories</option></select>
-    </div>
-    <div id="txTableWrap"></div>
-    <div class="footnote">Your data is saved privately in this browser, under your name.</div>
-  </div>
-
-</div>
-
-<!-- Transaction modal -->
-<div class="overlay" id="overlay">
-  <div class="modal">
-    <h2 id="txModalTitle">New transaction</h2>
-    <div class="field">
-      <label>Type</label>
-      <div class="type-toggle">
-        <button type="button" id="typeExpenseBtn" class="active expense">Expense</button>
-        <button type="button" id="typeIncomeBtn" class="income">Income</button>
-      </div>
-    </div>
-    <div class="field"><label>Note</label><input type="text" id="fNote" placeholder="e.g. Groceries at the market"></div>
-    <div class="field"><label>Category</label><select id="fCategory"></select></div>
-    <div class="field"><label>Amount (₹)</label><input type="number" id="fAmount" min="0" step="0.01" placeholder="0.00"></div>
-    <div class="field"><label>Date</label><input type="date" id="fDate"></div>
-    <div class="field" id="repeatField">
-      <div class="check-row"><input type="checkbox" id="fRepeat"><label for="fRepeat" style="margin:0;">Repeat monthly on this day</label></div>
-    </div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" id="cancelBtn">Cancel</button>
-      <button class="btn" id="saveBtn">Save transaction</button>
-    </div>
-  </div>
-</div>
-
-<!-- Recurring modal -->
-<div class="overlay" id="recOverlay">
-  <div class="modal">
-    <h2>New recurring transaction</h2>
-    <div class="field">
-      <label>Type</label>
-      <div class="type-toggle">
-        <button type="button" id="recTypeExpenseBtn" class="active expense">Expense</button>
-        <button type="button" id="recTypeIncomeBtn" class="income">Income</button>
-      </div>
-    </div>
-    <div class="field"><label>Note</label><input type="text" id="rNote" placeholder="e.g. Rent"></div>
-    <div class="field"><label>Category</label><select id="rCategory"></select></div>
-    <div class="field"><label>Amount (₹)</label><input type="number" id="rAmount" min="0" step="0.01" placeholder="0.00"></div>
-    <div class="field"><label>Day of month (1–28)</label><input type="number" id="rDay" min="1" max="28" value="1"></div>
-    <div class="field"><label>Starting month</label><input type="date" id="rStart"></div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" id="recCancelBtn">Cancel</button>
-      <button class="btn" id="recSaveBtn">Save recurring</button>
-    </div>
-  </div>
-</div>
-
-<script>
-/* ---------------- Storage fallback ----------------
-   window.storage only exists inside Claude.ai's artifact preview.
-   When this file is opened as a normal standalone webpage (downloaded,
-   hosted, shown to a client, etc.) we fall back to localStorage so
-   everything keeps working exactly the same way. */
-if(!window.storage){
-  window.storage = {
-    async get(key, shared){
-      const raw = localStorage.getItem((shared?'shared:':'')+key);
-      if(raw === null) throw new Error('Key not found');
-      return { key, value: raw, shared: !!shared };
-    },
-    async set(key, value, shared){
-      localStorage.setItem((shared?'shared:':'')+key, value);
-      return { key, value, shared: !!shared };
-    },
-    async delete(key, shared){
-      localStorage.removeItem((shared?'shared:':'')+key);
-      return { key, deleted: true, shared: !!shared };
-    },
-    async list(prefix, shared){
-      const pfx = (shared?'shared:':'') + (prefix||'');
-      const keys = Object.keys(localStorage).filter(k => k.startsWith(pfx)).map(k => shared ? k.slice(7) : k);
-      return { keys, prefix, shared: !!shared };
-    }
-  };
-}
-
-const EXPENSE_CATS = ['Food','Transport','Shopping','Bills','Entertainment','Health','Rent','Other'];
-const INCOME_CATS = ['Salary','Freelance','Gift','Interest','Other'];
-const PALETTE = ['#1E8E5A','#D64545','#4C7CE0','#E0A93C','#8C5FD1','#2AA8A0','#D3688A','#8A8676','#C97A2B','#4AA3D6'];
-
-let session = { username: null, display: null };
-let state = { transactions: [], limit: 0, categoryLimits: {}, goals: [], recurring: [], theme: 'light' };
-let currentType = 'expense';
-let recCurrentType = 'expense';
-let editingId = null;
-const catColorCache = {};
-
-function colorForCategory(cat){
-  if(!catColorCache[cat]){
-    const idx = Object.keys(catColorCache).length % PALETTE.length;
-    catColorCache[cat] = PALETTE[idx];
-  }
-  return catColorCache[cat];
-}
-
-const fmt = n => '₹' + (Math.round(n*100)/100).toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2});
-const monthKey = d => d.slice(0,7);
-const today = new Date();
-let selectedMonth = today.toISOString().slice(0,7);
-
-/* ---------------- Login ---------------- */
-function sanitizeUsername(name){
-  return name.trim().toLowerCase().replace(/[^a-z0-9_\- ]/g,'').replace(/\s+/g,'_').slice(0,40);
-}
-function keyFor(username, suffix){ return `budgetly:${username}:${suffix}`; }
-async function getProfileByUsername(username){
-  if(!username) return null;
-  try{
-    const p = await window.storage.get(keyFor(username,'profile'), false);
-    return p ? JSON.parse(p.value) : null;
-  }catch(e){ return null; }
-}
-function showLoginError(message){
-  const errEl = document.getElementById('loginError');
-  errEl.textContent = message || 'That PIN doesn\'t match this name. Try again.';
-  errEl.style.display = 'block';
-}
-function clearLoginError(){
-  const errEl = document.getElementById('loginError');
-  errEl.style.display = 'none';
-  errEl.textContent = 'That PIN doesn\'t match this name. Try again.';
-}
-function isValidPhone(phone){
-  return /^\d{10}$/.test(String(phone || '').replace(/\D/g, ''));
-}
-function isValidPin(pin){
-  return /^\d{4}$/.test(String(pin || ''));
-}
-function buildAuthError(message){
-  const errEl = document.getElementById('authError');
-  errEl.textContent = message || '';
-  errEl.style.display = message ? 'block' : 'none';
-}
-function findProfileByPhone(phone){
-  const normalized = String(phone || '').replace(/\D/g, '');
-  if(!normalized) return null;
-  for(let i=0;i<localStorage.length;i++){
-    const key = localStorage.key(i);
-    if(!key || !key.startsWith('budgetly:') || !key.endsWith(':profile')) continue;
-    try{
-      const profile = JSON.parse(localStorage.getItem(key));
-      if(profile && String(profile.phone || '').replace(/\D/g, '') === normalized){
-        return {
-          username: key.replace(/^budgetly:/,'').replace(/:profile$/,''),
-          profile
-        };
-      }
-    }catch(e){}
-  }
-  return null;
-}
-function openAuthModal(flow){
-  authFlow = flow;
-  pendingOtp = null;
-  pendingResetProfile = null;
-  pendingResetUsername = null;
-  const overlay = document.getElementById('authOverlay');
-  const title = document.getElementById('authTitle');
-  const nameField = document.getElementById('authNameField');
-  const phoneField = document.getElementById('authPhoneField');
-  const pinField = document.getElementById('authPinField');
-  const otpField = document.getElementById('authOtpField');
-  const note = document.getElementById('authNote');
-  const submitBtn = document.getElementById('authPrimaryBtn');
-
-  document.getElementById('authName').value = '';
-  document.getElementById('authPhone').value = '';
-  document.getElementById('authPin').value = '';
-  document.getElementById('authOtp').value = '';
-  buildAuthError('');
-  note.textContent = '';
-
-  if(flow === 'register'){
-    title.textContent = 'Create new account';
-    nameField.style.display = 'block';
-    phoneField.style.display = 'block';
-    pinField.style.display = 'block';
-    otpField.style.display = 'none';
-    submitBtn.textContent = 'Create account';
-    note.textContent = 'New users need a valid phone number and a 4-digit PIN.';
-  } else {
-    title.textContent = 'Reset PIN';
-    nameField.style.display = 'none';
-    phoneField.style.display = 'block';
-    pinField.style.display = 'none';
-    otpField.style.display = 'none';
-    submitBtn.textContent = 'Send OTP';
-    note.textContent = 'Enter the phone number linked to your account.';
-  }
-
-  overlay.classList.add('open');
-}
-function closeAuthModal(){
-  document.getElementById('authOverlay').classList.remove('open');
-  buildAuthError('');
-}
-let authFlow = 'register';
-let pendingOtp = null;
-let pendingResetProfile = null;
-let pendingResetUsername = null;
-
-async function handleAuthSubmit(){
-  const name = document.getElementById('authName').value.trim();
-  const phone = document.getElementById('authPhone').value.trim();
-  const pin = document.getElementById('authPin').value.trim();
-  const otp = document.getElementById('authOtp').value.trim();
-  const note = document.getElementById('authNote');
-  const submitBtn = document.getElementById('authPrimaryBtn');
-
-  if(authFlow === 'register'){
-    const uname = sanitizeUsername(name);
-    if(!name){ buildAuthError('Please enter your name.'); return; }
-    if(!uname){ buildAuthError('Name contains invalid characters. Use letters, numbers, spaces, hyphen or underscore.'); return; }
-    if(!isValidPhone(phone)){ buildAuthError('Please enter a valid 10-digit phone number.'); return; }
-    if(!isValidPin(pin)){ buildAuthError('Please enter a 4-digit PIN.'); return; }
-
-    const existing = await getProfileByUsername(uname);
-    if(existing && existing.phone && existing.phone !== phone){
-      buildAuthError('This username already exists. Please choose another name or sign in.');
-      return;
-    }
-
-    const profile = {
-      displayName: name,
-      pin,
-      phone,
-      createdAt: new Date().toISOString()
-    };
-
-    await window.storage.set(keyFor(uname,'profile'), JSON.stringify(profile), false);
-    session.username = uname;
-    session.display = name;
-    try{ await window.storage.set('budgetly:lastUser', uname, false); }catch(e){}
-    closeAuthModal();
-    document.getElementById('loginScreen').classList.add('hidden');
-    document.getElementById('appRoot').classList.remove('hidden');
-    document.getElementById('userLabel').textContent = session.display;
-    await loadData();
-    applyTheme();
-    processRecurring();
-    renderAll();
-    return;
-  }
-
-  if(!isValidPhone(phone)){
-    buildAuthError('Please enter a valid 10-digit phone number.');
-    return;
-  }
-
-  if(!pendingResetProfile){
-    const match = findProfileByPhone(phone);
-    if(!match){
-      buildAuthError('No account matches that phone number. Please check the number or create a new user.');
-      return;
-    }
-    pendingResetProfile = match.profile;
-    pendingResetUsername = match.username;
-    pendingOtp = String(Math.floor(100000 + Math.random() * 900000));
-    document.getElementById('authNameField').style.display = 'none';
-    document.getElementById('authPhoneField').style.display = 'block';
-    document.getElementById('authPinField').style.display = 'block';
-    document.getElementById('authOtpField').style.display = 'block';
-    document.getElementById('authPrimaryBtn').textContent = 'Verify OTP';
-    document.getElementById('authTitle').textContent = 'Verify OTP';
-    note.textContent = `Your OTP is ${pendingOtp}. Enter it below and set a new 4-digit PIN.`;
-    buildAuthError('');
-    return;
-  }
-
-  if(!isValidPin(pin)){ buildAuthError('Please enter a new 4-digit PIN.'); return; }
-  if(!otp){ buildAuthError('Please enter the OTP sent to your phone.'); return; }
-  if(String(otp) !== String(pendingOtp)){ buildAuthError('The OTP is incorrect. Please recheck the code and try again.'); return; }
-
-  pendingResetProfile.pin = pin;
-  const profileKey = keyFor(pendingResetUsername || sanitizeUsername(pendingResetProfile.displayName || 'user'), 'profile');
-  const resetName = pendingResetUsername ? pendingResetUsername.replace(/_/g,' ') : (pendingResetProfile.displayName || '');
-  await window.storage.set(profileKey, JSON.stringify(pendingResetProfile), false);
-  pendingOtp = null;
-  pendingResetProfile = null;
-  pendingResetUsername = null;
-  closeAuthModal();
-  document.getElementById('loginName').value = resetName;
-  document.getElementById('loginPin').value = pin;
-  note.textContent = '';
-  buildAuthError('');
-}
-
-async function tryLogin(){
-  const rawName = document.getElementById('loginName').value;
-  const pin = document.getElementById('loginPin').value.trim();
-  const uname = sanitizeUsername(rawName);
-  clearLoginError();
-
-  if(!rawName.trim()){
-    showLoginError('Please enter your username.');
-    document.getElementById('loginName').focus();
-    return;
-  }
-  if(!uname){
-    showLoginError('Username contains invalid characters.');
-    document.getElementById('loginName').focus();
-    return;
-  }
-  if(!pin){
-    showLoginError('Please enter your 4-digit PIN.');
-    document.getElementById('loginPin').focus();
-    return;
-  }
-  if(!isValidPin(pin)){
-    showLoginError('PIN must be exactly 4 digits.');
-    document.getElementById('loginPin').focus();
-    return;
-  }
-
-  const profile = await getProfileByUsername(uname);
-  if(!profile){
-    showLoginError('No account found for this username. Please create a new user.');
-    return;
-  }
-  if(!profile.pin || profile.pin !== pin){
-    showLoginError('That PIN doesn\'t match this name. Try again.');
-    return;
-  }
-
-  session.username = uname;
-  session.display = profile.displayName || rawName.trim();
-  try{ await window.storage.set('budgetly:lastUser', uname, false); }catch(e){}
-
-  document.getElementById('loginScreen').classList.add('hidden');
-  document.getElementById('appRoot').classList.remove('hidden');
-  document.getElementById('userLabel').textContent = session.display;
-
-  await loadData();
-  applyTheme();
-  processRecurring();
-  renderAll();
-}
-
-function logout(){
-  session.username = null; session.display = null;
-  document.getElementById('appRoot').classList.add('hidden');
-  document.getElementById('loginScreen').classList.remove('hidden');
-  document.getElementById('loginPin').value = '';
-  clearLoginError();
-}
-
-/* ---------------- Storage ---------------- */
-async function loadData(){
-  const u = session.username;
-  try{ const t = await window.storage.get(keyFor(u,'transactions'), false); state.transactions = t ? JSON.parse(t.value) : []; }
-  catch(e){ state.transactions = []; }
-  try{
-    const s = await window.storage.get(keyFor(u,'settings'), false);
-    const parsed = s ? JSON.parse(s.value) : {};
-    state.limit = parsed.limit || 0;
-    state.categoryLimits = parsed.categoryLimits || {};
-    state.theme = parsed.theme || 'light';
-  }catch(e){ state.limit = 0; state.categoryLimits = {}; state.theme = 'light'; }
-  try{ const g = await window.storage.get(keyFor(u,'goals'), false); state.goals = g ? JSON.parse(g.value) : []; }
-  catch(e){ state.goals = []; }
-  try{ const r = await window.storage.get(keyFor(u,'recurring'), false); state.recurring = r ? JSON.parse(r.value) : []; }
-  catch(e){ state.recurring = []; }
-}
-async function saveTransactions(){ await window.storage.set(keyFor(session.username,'transactions'), JSON.stringify(state.transactions), false); }
-async function saveSettings(){ await window.storage.set(keyFor(session.username,'settings'), JSON.stringify({limit:state.limit, categoryLimits:state.categoryLimits, theme:state.theme}), false); }
-async function saveGoals(){ await window.storage.set(keyFor(session.username,'goals'), JSON.stringify(state.goals), false); }
-async function saveRecurring(){ await window.storage.set(keyFor(session.username,'recurring'), JSON.stringify(state.recurring), false); }
-
-/* ---------------- Theme ---------------- */
-function applyTheme(){
-  document.documentElement.setAttribute('data-theme', state.theme);
-  document.getElementById('themeToggle').textContent = state.theme === 'dark' ? '☀️' : '🌙';
-}
-document.getElementById('themeToggle').onclick = async () => {
-  state.theme = state.theme === 'dark' ? 'light' : 'dark';
-  applyTheme();
-  await saveSettings();
-};
-document.getElementById('logoutBtn').onclick = logout;
-document.getElementById('loginBtn').onclick = tryLogin;
-document.getElementById('loginPin').addEventListener('keydown', e => { if(e.key==='Enter') tryLogin(); });
-document.getElementById('loginName').addEventListener('keydown', e => { if(e.key==='Enter') document.getElementById('loginPin').focus(); });
-document.getElementById('newUserBtn').onclick = () => openAuthModal('register');
-document.getElementById('forgotPasswordBtn').onclick = () => openAuthModal('forgot');
-document.getElementById('authPrimaryBtn').onclick = handleAuthSubmit;
-document.getElementById('authCancelBtn').onclick = closeAuthModal;
-document.getElementById('authOverlay').addEventListener('click', e => { if(e.target && e.target.id === 'authOverlay') closeAuthModal(); });
-document.getElementById('authPhone').addEventListener('input', e => { e.target.value = e.target.value.replace(/\D/g, '').slice(0,10); });
-document.getElementById('authOtp').addEventListener('input', e => { e.target.value = e.target.value.replace(/\D/g, '').slice(0,6); });
-document.getElementById('loginPin').addEventListener('input', e => { e.target.value = e.target.value.replace(/\D/g, '').slice(0,4); });
-
-/* ---------------- Recurring processing ---------------- */
-function monthsBetween(startKey, endKey){
-  const [sy,sm] = startKey.split('-').map(Number);
-  const [ey,em] = endKey.split('-').map(Number);
-  const out = [];
-  let y = sy, m = sm, guard = 0;
-  while((y < ey || (y === ey && m <= em)) && guard < 240){
-    out.push(`${y}-${String(m).padStart(2,'0')}`);
-    m++; if(m>12){ m=1; y++; }
-    guard++;
-  }
-  return out;
-}
-function processRecurring(){
-  const todayKey = new Date().toISOString().slice(0,7);
-  let changed = false;
-  state.recurring.forEach(rule => {
-    if(!rule.active) return;
-    const months = monthsBetween(rule.startMonth, todayKey);
-    months.forEach(mk => {
-      const exists = state.transactions.some(t => t.recurringId === rule.id && monthKey(t.date) === mk);
-      if(!exists){
-        const [y,m] = mk.split('-').map(Number);
-        const lastDay = new Date(y, m, 0).getDate();
-        const day = Math.min(rule.day, lastDay);
-        const dateStr = `${mk}-${String(day).padStart(2,'0')}`;
-        state.transactions.push({
-          id: 'tx_'+Date.now()+'_'+Math.random().toString(36).slice(2,7)+'_'+mk,
-          type: rule.type, note: rule.note, category: rule.category, amount: rule.amount,
-          date: dateStr, recurringId: rule.id
-        });
-        changed = true;
-      }
-    });
-  });
-  if(changed) saveTransactions();
-}
-
-/* ---------------- Month select ---------------- */
-function monthLabel(key){
-  const [y,m] = key.split('-').map(Number);
-  return new Date(y, m-1, 1).toLocaleString('en-US', {month:'long', year:'numeric'});
-}
-function populateMonthSelect(){
-  const sel = document.getElementById('monthSelect');
-  const keys = new Set(state.transactions.map(t => monthKey(t.date)));
-  keys.add(selectedMonth);
-  const sorted = Array.from(keys).sort().reverse();
-  sel.innerHTML = sorted.map(k => `<option value="${k}" ${k===selectedMonth?'selected':''}>${monthLabel(k)}</option>`).join('');
-  sel.onchange = () => { selectedMonth = sel.value; renderAll(); };
-}
-function txForMonth(key){ return state.transactions.filter(t => monthKey(t.date) === key); }
-
-/* ---------------- Stats ---------------- */
-function computeStats(){
-  const allTime = state.transactions.reduce((acc,t) => acc + (t.type==='income'? t.amount : -t.amount), 0);
-  const monthTx = txForMonth(selectedMonth);
-  const income = monthTx.filter(t=>t.type==='income').reduce((a,t)=>a+t.amount,0);
-  const expenses = monthTx.filter(t=>t.type==='expense').reduce((a,t)=>a+t.amount,0);
-  const saved = income - expenses;
-  const savedPct = income > 0 ? Math.round((saved/income)*100) : 0;
-  return {allTime, income, expenses, saved, savedPct, monthTx};
-}
-function renderStats(s){
-  const grid = document.getElementById('statsGrid');
-  const mLabel = monthLabel(selectedMonth).split(' ')[0];
-  grid.innerHTML = `
-    <div class="card">
-      <div class="stat-label"><span class="txt">Total balance</span><span class="stat-icon" style="background:var(--amber-soft)">💼</span></div>
-      <div class="stat-value">${fmt(s.allTime)}</div>
-      <div class="stat-sub">All money in minus money out</div>
-    </div>
-    <div class="card">
-      <div class="stat-label"><span class="txt">Income · ${mLabel}</span><span class="stat-icon pos" style="background:var(--green-soft)">↗</span></div>
-      <div class="stat-value pos">${fmt(s.income)}</div>
-      <div class="stat-sub">Money in this month</div>
-    </div>
-    <div class="card">
-      <div class="stat-label"><span class="txt">Expenses · ${mLabel}</span><span class="stat-icon neg" style="background:var(--red-soft)">↘</span></div>
-      <div class="stat-value neg">${fmt(s.expenses)}</div>
-      <div class="stat-sub">Money out this month</div>
-    </div>
-    <div class="card">
-      <div class="stat-label"><span class="txt">Saved this month</span><span class="stat-icon" style="background:var(--amber-soft)">🐷</span></div>
-      <div class="stat-value ${s.saved>=0?'pos':'neg'}">${fmt(s.saved)}</div>
-      <div class="stat-sub">${s.savedPct}% of income kept</div>
-    </div>`;
-}
-
-/* ---------------- Budget ---------------- */
-function renderBudget(s){
-  document.getElementById('limitInput').value = state.limit || 0;
-  const pct = state.limit > 0 ? Math.min(100, Math.round((s.expenses/state.limit)*100)) : 0;
-  document.getElementById('budgetSpent').textContent = fmt(s.expenses);
-  document.getElementById('budgetOf').textContent = 'of ' + fmt(state.limit);
-  const left = state.limit - s.expenses;
-  const leftEl = document.getElementById('budgetLeft');
-  leftEl.textContent = fmt(Math.abs(left)) + (left>=0 ? ' left' : ' over');
-  leftEl.style.color = left>=0 ? 'var(--green)' : 'var(--red)';
-  const bar = document.getElementById('budgetBar');
-  bar.style.width = pct + '%';
-  bar.classList.toggle('over', state.limit>0 && s.expenses > state.limit);
-  document.getElementById('limitInput').onchange = async (e) => {
-    state.limit = parseFloat(e.target.value) || 0;
-    await saveSettings();
-    renderAll();
-  };
-}
-
-/* ---------------- Trend ---------------- */
-function renderTrend(){
-  const [sy, sm] = selectedMonth.split('-').map(Number);
-  const months = [];
-  for(let i=5;i>=0;i--){ const d = new Date(sy, sm-1-i, 1); months.push(d.toISOString().slice(0,7)); }
-  const nets = months.map(k => txForMonth(k).reduce((a,t)=> a + (t.type==='income'? t.amount : -t.amount), 0));
-  const svg = document.getElementById('trendSvg');
-  const w = 640, h = 150, padL = 40, padR = 10, padT = 15, padB = 24;
-  const maxV = Math.max(1, ...nets.map(Math.abs));
-  const yScale = v => h - padB - ((v + maxV) / (maxV*2)) * (h - padT - padB);
-  const xStep = (w - padL - padR) / (months.length - 1 || 1);
-  let path = '';
-  nets.forEach((v,i) => { const x = padL + i*xStep, y = yScale(v); path += (i===0 ? 'M' : 'L') + x + ',' + y + ' '; });
-  const zeroY = yScale(0);
-  let svgContent = `<line x1="${padL}" y1="${zeroY}" x2="${w-padR}" y2="${zeroY}" stroke="var(--border)" stroke-width="1"/>`;
-  svgContent += `<path d="${path}" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`;
-  nets.forEach((v,i)=>{
-    const x = padL + i*xStep, y = yScale(v);
-    svgContent += `<circle cx="${x}" cy="${y}" r="3.5" fill="${v>=0?'var(--green)':'var(--red)'}" />`;
-    svgContent += `<text x="${x}" y="${h-6}" text-anchor="middle">${months[i].split('-')[1]}/${months[i].split('-')[0].slice(2)}</text>`;
-  });
-  svg.innerHTML = svgContent;
-}
-
-/* ---------------- Compare months ---------------- */
-function renderCompare(){
-  const [sy, sm] = selectedMonth.split('-').map(Number);
-  const months = [];
-  for(let i=5;i>=0;i--){ const d = new Date(sy, sm-1-i, 1); months.push(d.toISOString().slice(0,7)); }
-  const data = months.map(k => {
-    const tx = txForMonth(k);
-    return { income: tx.filter(t=>t.type==='income').reduce((a,t)=>a+t.amount,0), expenses: tx.filter(t=>t.type==='expense').reduce((a,t)=>a+t.amount,0) };
-  });
-  const svg = document.getElementById('compareSvg');
-  const w = 640, h = 170, padL = 30, padR = 10, padT = 20, padB = 26;
-  const maxV = Math.max(1, ...data.map(d=>Math.max(d.income,d.expenses)));
-  const groupW = (w - padL - padR) / months.length;
-  const barW = Math.min(22, groupW/3);
-  let svgContent = `<text x="${padL}" y="12" fill="var(--green)" font-weight="700">● Income</text><text x="${padL+80}" y="12" fill="var(--red)" font-weight="700">● Expenses</text>`;
-  months.forEach((mk,i)=>{
-    const gx = padL + i*groupW + groupW/2;
-    const incH = (data[i].income/maxV) * (h-padT-padB);
-    const expH = (data[i].expenses/maxV) * (h-padT-padB);
-    const baseY = h - padB;
-    svgContent += `<rect x="${gx-barW-2}" y="${baseY-incH}" width="${barW}" height="${incH}" rx="3" fill="var(--green)"><title>${monthLabel(mk)} income: ${fmt(data[i].income)}</title></rect>`;
-    svgContent += `<rect x="${gx+2}" y="${baseY-expH}" width="${barW}" height="${expH}" rx="3" fill="var(--red)"><title>${monthLabel(mk)} expenses: ${fmt(data[i].expenses)}</title></rect>`;
-    svgContent += `<text x="${gx}" y="${h-8}" text-anchor="middle">${mk.split('-')[1]}/${mk.split('-')[0].slice(2)}</text>`;
-  });
-  svg.innerHTML = svgContent;
-}
-
-/* ---------------- Insights ---------------- */
-function renderInsights(s){
-  const box = document.getElementById('insightsBox');
-  let html = '';
-  if(s.income === 0 && s.expenses === 0){
-    html += insightRow('neutral','◇','Nothing tracked yet','Add a transaction to see your financial health.');
-  } else if(s.savedPct >= 20){
-    html += insightRow('good','✓','Financial health: Healthy',`You kept ${s.savedPct}% of what you earned this month.`);
-  } else if(s.savedPct >= 0){
-    html += insightRow('warn','◆','Financial health: Tight',`You kept ${s.savedPct}% of what you earned this month.`);
-  } else {
-    html += insightRow('bad','!','Financial health: Overspending',`You spent more than you earned this month.`);
-  }
-  if(state.limit > 0){
-    const pct = Math.round((s.expenses/state.limit)*100);
-    if(s.expenses > state.limit){
-      html += insightRow('bad','!','Over budget', `You've exceeded your ${fmt(state.limit)} limit by ${fmt(s.expenses-state.limit)}.`);
-    } else if(pct >= 80){
-      html += insightRow('warn','◆','Nearing your limit', `You've used ${pct}% of your ${fmt(state.limit)} limit.`);
-    } else {
-      html += insightRow('good','✓','Budget on track', `You've used ${pct}% of your ${fmt(state.limit)} limit.`);
-    }
-  } else {
-    html += insightRow('neutral','◇','No limit set', 'Set a monthly limit to track your budget.');
-  }
-  if(s.monthTx.filter(t=>t.type==='expense').length === 0){
-    html += insightRow('neutral','↘','No spending yet','Add a transaction to see where your money goes.');
-  } else {
-    const byCat = {};
-    s.monthTx.filter(t=>t.type==='expense').forEach(t => byCat[t.category] = (byCat[t.category]||0)+t.amount);
-    const top = Object.entries(byCat).sort((a,b)=>b[1]-a[1])[0];
-    html += insightRow('neutral','↘',`Top category: ${top[0]}`, `${fmt(top[1])} spent so far this month.`);
-  }
-  const overCats = Object.entries(state.categoryLimits).filter(([cat,lim]) => {
-    if(!lim) return false;
-    const spent = s.monthTx.filter(t=>t.type==='expense' && t.category===cat).reduce((a,t)=>a+t.amount,0);
-    return spent > lim;
-  });
-  if(overCats.length){
-    const [cat,lim] = overCats[0];
-    const extra = overCats.length > 1 ? ` and ${overCats.length-1} other categor${overCats.length-1>1?'ies':'y'}` : '';
-    html += insightRow('bad','!',`Over budget in ${cat}`, `You've gone past your ${fmt(lim)} limit for ${cat}${extra}.`);
-  }
-  const readyGoals = state.goals.filter(g => g.saved >= g.target && g.target > 0);
-  if(readyGoals.length){
-    html += insightRow('good','🎯',`Goal reached: ${readyGoals[0].name}`, `You've hit your ${fmt(readyGoals[0].target)} target.`);
-  }
-  box.innerHTML = html;
-}
-function insightRow(cls, glyph, title, sub){
-  return `<div class="insight ${cls}"><span class="glyph">${glyph}</span><div><div class="insight-title">${title}</div><div class="insight-sub">${sub}</div></div></div>`;
-}
-
-/* ---------------- Category budgets ---------------- */
-function renderCategoryBudgets(s){
-  const box = document.getElementById('catBudgetBox');
-  const spentByCat = {};
-  s.monthTx.filter(t=>t.type==='expense').forEach(t => spentByCat[t.category] = (spentByCat[t.category]||0) + t.amount);
-  box.innerHTML = EXPENSE_CATS.map(cat => {
-    const limit = state.categoryLimits[cat] || 0;
-    const spent = spentByCat[cat] || 0;
-    const pct = limit > 0 ? Math.min(100, (spent/limit)*100) : (spent>0 ? 100 : 0);
-    const over = limit > 0 && spent > limit;
-    return `
-      <div class="cbud-row">
-        <div class="cbud-name">${cat}</div>
-        <div class="cbud-bar-track"><div class="cbud-bar-fill ${over?'over':''}" style="width:${limit>0?pct:0}%"></div></div>
-        <div class="cbud-spent">${fmt(spent)}</div>
-        <input type="number" class="cbud-input" min="0" step="1" placeholder="Limit" value="${limit||''}" data-cat="${cat}">
-      </div>`;
-  }).join('');
-  box.querySelectorAll('.cbud-input').forEach(inp => {
-    inp.onchange = async (e) => {
-      const cat = e.target.dataset.cat;
-      const val = parseFloat(e.target.value) || 0;
-      if(val > 0) state.categoryLimits[cat] = val; else delete state.categoryLimits[cat];
-      await saveSettings();
-      renderAll();
-    };
-  });
-}
-
-/* ---------------- Goals ---------------- */
-function renderGoals(){
-  const box = document.getElementById('goalsBox');
-  if(state.goals.length === 0){
-    box.innerHTML = `<div class="empty-state">No savings goals yet. Add one below.</div>`;
-    return;
-  }
-  box.innerHTML = state.goals.map(g => {
-    const pct = g.target > 0 ? Math.min(100, Math.round((g.saved/g.target)*100)) : 0;
-    const reached = g.target > 0 && g.saved >= g.target;
-    return `
-      <div class="goal">
-        <div class="goal-head">
-          <div class="goal-name">${escapeHtml(g.name)} ${reached?'🎉':''}</div>
-          <div class="goal-amt">${fmt(g.saved)} / ${fmt(g.target)}</div>
+    <div class="hero-container">
+      <div class="hero-text" data-reveal="fade-right">
+        <p class="hero-greeting">
+          <span class="eyebrow-dot"></span> Hello, I'm
+        </p>
+        <h1 class="hero-name">PRANESH <span class="gradient-text">R V</span></h1>
+        <h2 class="hero-role">
+          <span id="typedText"></span><span class="cursor-blink">|</span>
+        </h2>
+        <p class="hero-desc">
+          A passionate Computer Science Engineering student who loves exploring Linux systems,
+          building scalable web applications, and solving real-world problems through clean,
+          efficient code. Always learning, always building.
+        </p>
+        <div class="hero-buttons">
+          <a href="#resume" class="btn btn-primary">
+            <i class="fa-solid fa-download"></i> Download Resume
+          </a>
+          <a href="#contact" class="btn btn-outline">
+            <i class="fa-solid fa-paper-plane"></i> Contact Me
+          </a>
         </div>
-        <div class="bar-track" style="margin:0;"><div class="bar-fill" style="width:${pct}%; background:${reached?'var(--green)':'var(--blue)'}"></div></div>
-        <div class="goal-actions">
-          <button class="btn btn-sm btn-outline-green" onclick="addGoalFunds('${g.id}')">+ Add funds</button>
-          <button class="btn btn-sm btn-ghost" onclick="deleteGoal('${g.id}')">Delete</button>
+
+        <div class="hero-socials">
+          <a href="#" aria-label="GitHub" class="social-icon"><i class="fa-brands fa-github"></i></a>
+          <a href="#" aria-label="LinkedIn" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Twitter" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#" aria-label="Instagram" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
         </div>
-      </div>`;
-  }).join('');
-}
-async function addGoalFunds(id){
-  const amt = parseFloat(prompt('How much would you like to add to this goal (₹)?', '0'));
-  if(!amt || amt <= 0) return;
-  const g = state.goals.find(g=>g.id===id);
-  if(!g) return;
-  g.saved += amt;
-  await saveGoals();
-  renderAll();
-}
-async function deleteGoal(id){
-  state.goals = state.goals.filter(g=>g.id!==id);
-  await saveGoals();
-  renderAll();
-}
-document.getElementById('addGoalBtn').onclick = async () => {
-  const name = document.getElementById('goalName').value.trim();
-  const target = parseFloat(document.getElementById('goalTarget').value);
-  if(!name || !target || target <= 0){ alert('Please enter a goal name and a target amount.'); return; }
-  state.goals.push({ id:'g_'+Date.now()+'_'+Math.random().toString(36).slice(2,6), name, target, saved:0 });
-  document.getElementById('goalName').value = '';
-  document.getElementById('goalTarget').value = '';
-  await saveGoals();
-  renderAll();
-};
-
-/* ---------------- Category bars + pie ---------------- */
-function renderCategories(s){
-  const box = document.getElementById('catBox');
-  const expenses = s.monthTx.filter(t=>t.type==='expense');
-  if(expenses.length === 0){ box.innerHTML = `<div class="empty-state">No expenses in ${monthLabel(selectedMonth)} yet.</div>`; return; }
-  const byCat = {};
-  expenses.forEach(t => byCat[t.category] = (byCat[t.category]||0)+t.amount);
-  const max = Math.max(...Object.values(byCat));
-  const rows = Object.entries(byCat).sort((a,b)=>b[1]-a[1]);
-  box.innerHTML = rows.map(([cat,amt]) => `
-    <div class="cat-row">
-      <div class="cat-name"><span class="cat-dot" style="background:${colorForCategory(cat)}"></span>${cat}</div>
-      <div class="cat-bar-track"><div class="cat-bar-fill" style="width:${(amt/max)*100}%; background:${colorForCategory(cat)}"></div></div>
-      <div class="cat-amt">${fmt(amt)}</div>
-    </div>`).join('');
-}
-function renderPie(s){
-  const box = document.getElementById('pieBox');
-  const expenses = s.monthTx.filter(t=>t.type==='expense');
-  if(expenses.length === 0){ box.innerHTML = `<div class="empty-state">No expenses to chart yet.</div>`; return; }
-  const byCat = {};
-  expenses.forEach(t => byCat[t.category] = (byCat[t.category]||0)+t.amount);
-  const total = Object.values(byCat).reduce((a,b)=>a+b,0);
-  const rows = Object.entries(byCat).sort((a,b)=>b[1]-a[1]);
-  let cum = 0;
-  const stops = rows.map(([cat,amt]) => {
-    const startPct = (cum/total)*100;
-    cum += amt;
-    const endPct = (cum/total)*100;
-    return `${colorForCategory(cat)} ${startPct}% ${endPct}%`;
-  }).join(', ');
-  box.innerHTML = `
-    <div class="pie-wrap">
-      <div class="pie" style="background:conic-gradient(${stops});"></div>
-      <div class="pie-legend">
-        ${rows.map(([cat,amt]) => `
-          <div class="legend-row">
-            <span class="cat-dot" style="background:${colorForCategory(cat)}"></span>
-            <span class="legend-name">${cat}</span>
-            <span class="legend-pct">${Math.round((amt/total)*100)}%</span>
-          </div>`).join('')}
       </div>
-    </div>`;
-}
-function renderWhereItWent(s){
-  const box = document.getElementById('wentBox');
-  const expenses = s.monthTx.filter(t=>t.type==='expense').sort((a,b)=>b.amount-a.amount).slice(0,6);
-  if(expenses.length === 0){ box.innerHTML = `<div class="empty-state">Nothing to show yet.</div>`; return; }
-  box.innerHTML = expenses.map(t => `
-    <div class="went-row">
-      <div><div class="went-name">${escapeHtml(t.note || t.category)}</div><div class="went-meta">${t.category} · ${formatDate(t.date)}</div></div>
-      <div class="neg" style="font-weight:700;">-${fmt(t.amount)}</div>
-    </div>`).join('');
-}
 
-function formatDate(d){ const dt = new Date(d + 'T00:00:00'); return dt.toLocaleDateString('en-US', {month:'short', day:'numeric'}); }
-function escapeHtml(str){ const div = document.createElement('div'); div.textContent = str; return div.innerHTML; }
-
-/* ---------------- Recurring UI ---------------- */
-function renderRecurring(){
-  const box = document.getElementById('recurringBox');
-  if(state.recurring.length === 0){ box.innerHTML = `<div class="empty-state">No recurring transactions set up.</div>`; return; }
-  box.innerHTML = state.recurring.map(r => `
-    <div class="rec-row">
-      <div class="rec-main">
-        <div class="rec-title">${escapeHtml(r.note || r.category)} <span class="tag">${r.category}</span></div>
-        <div class="rec-meta">${r.type==='income'?'+':'-'}${fmt(r.amount)} · day ${r.day} of every month · since ${monthLabel(r.startMonth)}</div>
+      <div class="hero-image-wrap" data-reveal="fade-left">
+        <div class="hero-image-glow"></div>
+        <div class="hero-image-frame">
+          <div class="hero-image-placeholder">
+            <i class="fa-solid fa-user-astronaut"></i>
+          </div>
+          <div class="floating-badge badge-1"><i class="fa-brands fa-linux"></i></div>
+          <div class="floating-badge badge-2"><i class="fa-brands fa-python"></i></div>
+          <div class="floating-badge badge-3"><i class="fa-brands fa-java"></i></div>
+          <div class="floating-badge badge-4"><i class="fa-brands fa-git-alt"></i></div>
+        </div>
       </div>
-      <label class="switch"><input type="checkbox" ${r.active?'checked':''} onchange="toggleRecurring('${r.id}', this.checked)"><span class="slider"></span></label>
-      <button class="icon-mini danger" onclick="deleteRecurring('${r.id}')" title="Delete">✕</button>
-    </div>`).join('');
-}
-async function toggleRecurring(id, checked){
-  const r = state.recurring.find(r=>r.id===id);
-  if(!r) return;
-  r.active = checked;
-  await saveRecurring();
-  processRecurring();
-  renderAll();
-}
-async function deleteRecurring(id){
-  state.recurring = state.recurring.filter(r=>r.id!==id);
-  await saveRecurring();
-  renderAll();
-}
+    </div>
 
-/* ---------------- Transactions table ---------------- */
-function populateCatFilter(){
-  const sel = document.getElementById('catFilter');
-  const cur = sel.value || 'all';
-  const cats = Array.from(new Set(state.transactions.map(t=>t.category))).sort();
-  sel.innerHTML = '<option value="all">All categories</option>' + cats.map(c=>`<option value="${c}">${c}</option>`).join('');
-  sel.value = cats.includes(cur) ? cur : 'all';
-}
-function getFilteredList(){
-  const search = document.getElementById('searchInput').value.trim().toLowerCase();
-  const typeF = document.getElementById('typeFilter').value;
-  const catF = document.getElementById('catFilter').value;
-  let list = txForMonth(selectedMonth);
-  if(typeF !== 'all') list = list.filter(t=>t.type===typeF);
-  if(catF !== 'all') list = list.filter(t=>t.category===catF);
-  if(search) list = list.filter(t => (t.note||'').toLowerCase().includes(search) || t.category.toLowerCase().includes(search));
-  return list.slice().sort((a,b)=> b.date.localeCompare(a.date));
-}
-function renderTransactions(){
-  const list = getFilteredList();
-  const wrap = document.getElementById('txTableWrap');
-  if(list.length === 0){
-    wrap.innerHTML = `<div class="empty-state">No transactions found.<br>Try clearing filters, or add your first transaction.</div>`;
-    return;
-  }
-  wrap.innerHTML = `
-    <table>
-      <thead><tr><th>Date</th><th>Note</th><th>Category</th><th style="text-align:right;">Amount</th><th></th></tr></thead>
-      <tbody>
-        ${list.map(t => `
-          <tr>
-            <td>${formatDate(t.date)}</td>
-            <td>${escapeHtml(t.note || '—')}${t.recurringId ? '<span class="recur-flag">🔁</span>' : ''}</td>
-            <td><span class="tag">${t.category}</span></td>
-            <td class="amt-cell ${t.type==='income'?'pos':'neg'}">${t.type==='income'?'+':'-'}${fmt(t.amount)}</td>
-            <td><div class="row-actions">
-              <button class="icon-mini" onclick="editTx('${t.id}')" title="Edit">✎</button>
-              <button class="icon-mini danger" onclick="deleteTx('${t.id}')" title="Delete">✕</button>
-            </div></td>
-          </tr>`).join('')}
-      </tbody>
-    </table>`;
-}
-async function deleteTx(id){
-  state.transactions = state.transactions.filter(t => t.id !== id);
-  await saveTransactions();
-  renderAll();
-}
+    <a href="#about" class="scroll-hint" aria-label="Scroll to About section">
+      <span>Scroll</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </a>
+  </section>
 
-/* ---------------- CSV export ---------------- */
-document.getElementById('exportBtn').onclick = () => {
-  const list = getFilteredList();
-  if(list.length === 0){ alert('No transactions to export for the current filters.'); return; }
-  const header = ['Date','Type','Category','Note','Amount'];
-  const rows = list.map(t => [t.date, t.type, t.category, (t.note||'').replace(/"/g,'""'), t.amount]);
-  const csv = [header, ...rows].map(r => r.map(v => `"${v}"`).join(',')).join('\n');
-  const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = `budgetly-${selectedMonth}.csv`;
-  document.body.appendChild(a); a.click(); document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-};
+  <!-- ============ ABOUT SECTION ============ -->
+  <section class="about" id="about">
+    <div class="section-container">
+      <div class="section-heading" data-reveal="fade-up">
+        <p class="section-eyebrow">Get To Know Me</p>
+        <h2 class="section-title">About <span class="gradient-text">Me</span></h2>
+      </div>
 
-/* ---------------- Master render ---------------- */
-function renderAll(){
-  populateMonthSelect();
-  populateCatFilter();
-  const s = computeStats();
-  renderStats(s);
-  renderBudget(s);
-  renderTrend();
-  renderCompare();
-  renderInsights(s);
-  renderCategoryBudgets(s);
-  renderGoals();
-  renderCategories(s);
-  renderPie(s);
-  renderWhereItWent(s);
-  renderRecurring();
-  renderTransactions();
-}
+      <div class="about-grid">
+        <div class="about-visual" data-reveal="fade-right">
+          <div class="glass-card about-card">
+            <div class="about-stats">
+              <div class="stat-item">
+                <span class="stat-number" data-target="15">0</span><span class="stat-plus">+</span>
+                <p>Projects Built</p>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" data-target="5">0</span><span class="stat-plus">+</span>
+                <p>Certifications</p>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" data-target="12">0</span><span class="stat-plus">+</span>
+                <p>Tech Stacks</p>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" data-target="2">0</span><span class="stat-plus">+</span>
+                <p>Years Learning</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-/* ---------------- Transaction modal ---------------- */
-const overlay = document.getElementById('overlay');
-function openModal(editTx){
-  editingId = editTx ? editTx.id : null;
-  document.getElementById('txModalTitle').textContent = editTx ? 'Edit transaction' : 'New transaction';
-  document.getElementById('saveBtn').textContent = editTx ? 'Save changes' : 'Save transaction';
-  document.getElementById('repeatField').classList.toggle('hidden', !!editTx);
-  document.getElementById('fRepeat').checked = false;
-  setType(editTx ? editTx.type : 'expense');
-  document.getElementById('fNote').value = editTx ? (editTx.note||'') : '';
-  document.getElementById('fCategory').value = editTx ? editTx.category : (currentType==='income'?INCOME_CATS[0]:EXPENSE_CATS[0]);
-  document.getElementById('fAmount').value = editTx ? editTx.amount : '';
-  document.getElementById('fDate').value = editTx ? editTx.date : new Date().toISOString().slice(0,10);
-  overlay.classList.add('open');
-}
-function closeModal(){ overlay.classList.remove('open'); editingId = null; }
-function setType(type){
-  currentType = type;
-  document.getElementById('typeExpenseBtn').classList.toggle('active', type==='expense');
-  document.getElementById('typeIncomeBtn').classList.toggle('active', type==='income');
-  const catSel = document.getElementById('fCategory');
-  const cats = type==='income' ? INCOME_CATS : EXPENSE_CATS;
-  catSel.innerHTML = cats.map(c=>`<option value="${c}">${c}</option>`).join('');
-}
-function editTx(id){
-  const t = state.transactions.find(t=>t.id===id);
-  if(t) openModal(t);
-}
+        <div class="about-content" data-reveal="fade-left">
+          <p class="about-text">
+            I'm a Computer Science Engineering student with a deep passion for
+            <strong>software development</strong>, <strong>Linux systems</strong>, and
+            <strong>computer networking</strong>. I enjoy the process of taking an idea
+            apart, understanding how systems truly work under the hood, and rebuilding
+            it into something efficient and reliable.
+          </p>
+          <p class="about-text">
+            My journey revolves around continuous learning — from writing my first lines
+            of C to architecting full-stack web applications and experimenting with AI-powered
+            tools. I spend my time exploring the Linux terminal, sharpening my programming
+            fundamentals, and diving into new technologies the moment they catch my interest.
+          </p>
+          <p class="about-text">
+            What drives me most is <strong>problem solving</strong> — breaking down complex
+            challenges into clean, logical solutions and shipping real-world projects that
+            people can actually use. I'm constantly building, breaking, and learning again.
+          </p>
 
-document.getElementById('addBtn').onclick = () => openModal(null);
-document.getElementById('addBtn2').onclick = () => openModal(null);
-document.getElementById('cancelBtn').onclick = closeModal;
-overlay.onclick = (e) => { if(e.target === overlay) closeModal(); };
-document.getElementById('typeExpenseBtn').onclick = () => setType('expense');
-document.getElementById('typeIncomeBtn').onclick = () => setType('income');
+          <div class="about-highlights">
+            <div class="highlight-pill"><i class="fa-brands fa-linux"></i> Linux Enthusiast</div>
+            <div class="highlight-pill"><i class="fa-solid fa-network-wired"></i> Networking</div>
+            <div class="highlight-pill"><i class="fa-solid fa-code"></i> Programming</div>
+            <div class="highlight-pill"><i class="fa-solid fa-lightbulb"></i> Problem Solving</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-document.getElementById('saveBtn').onclick = async () => {
-  const amount = parseFloat(document.getElementById('fAmount').value);
-  const date = document.getElementById('fDate').value;
-  if(!amount || amount <= 0 || !date){ alert('Please enter a valid amount and date.'); return; }
-  const note = document.getElementById('fNote').value.trim();
-  const category = document.getElementById('fCategory').value;
+  <!-- ============ SKILLS SECTION ============ -->
+  <section class="skills" id="skills">
+    <div class="section-container">
+      <div class="section-heading" data-reveal="fade-up">
+        <p class="section-eyebrow">What I Bring</p>
+        <h2 class="section-title">My <span class="gradient-text">Skills</span></h2>
+      </div>
 
-  if(editingId){
-    const t = state.transactions.find(t=>t.id===editingId);
-    if(t){ t.type=currentType; t.note=note; t.category=category; t.amount=amount; t.date=date; }
-  } else {
-    const tx = { id: 'tx_'+Date.now()+'_'+Math.random().toString(36).slice(2,7), type: currentType, note, category, amount, date };
-    state.transactions.push(tx);
-    if(document.getElementById('fRepeat').checked){
-      const day = Number(date.split('-')[2]);
-      const rule = { id:'rec_'+Date.now()+'_'+Math.random().toString(36).slice(2,6), type: currentType, note, category, amount, day, startMonth: monthKey(date), active:true };
-      state.recurring.push(rule);
-      await saveRecurring();
-      tx.recurringId = rule.id;
-    }
-  }
-  await saveTransactions();
-  selectedMonth = monthKey(date);
-  closeModal();
-  processRecurring();
-  renderAll();
-};
+      <div class="skills-grid">
 
-document.getElementById('searchInput').oninput = renderTransactions;
-document.getElementById('typeFilter').onchange = renderTransactions;
-document.getElementById('catFilter').onchange = renderTransactions;
+        <div class="skill-card glass-card" data-reveal="fade-up">
+          <div class="skill-card-head">
+            <i class="fa-brands fa-linux skill-icon"></i>
+            <span class="skill-name">Linux</span>
+            <span class="skill-percent">90%</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" data-percent="90"></div></div>
+        </div>
 
-/* ---------------- Recurring modal ---------------- */
-const recOverlay = document.getElementById('recOverlay');
-function setRecType(type){
-  recCurrentType = type;
-  document.getElementById('recTypeExpenseBtn').classList.toggle('active', type==='expense');
-  document.getElementById('recTypeIncomeBtn').classList.toggle('active', type==='income');
-  const catSel = document.getElementById('rCategory');
-  const cats = type==='income' ? INCOME_CATS : EXPENSE_CATS;
-  catSel.innerHTML = cats.map(c=>`<option value="${c}">${c}</option>`).join('');
-}
-document.getElementById('addRecurringBtn').onclick = () => {
-  document.getElementById('rNote').value = '';
-  document.getElementById('rAmount').value = '';
-  document.getElementById('rDay').value = 1;
-  document.getElementById('rStart').value = new Date().toISOString().slice(0,10);
-  setRecType('expense');
-  recOverlay.classList.add('open');
-};
-document.getElementById('recCancelBtn').onclick = () => recOverlay.classList.remove('open');
-recOverlay.onclick = (e) => { if(e.target === recOverlay) recOverlay.classList.remove('open'); };
-document.getElementById('recTypeExpenseBtn').onclick = () => setRecType('expense');
-document.getElementById('recTypeIncomeBtn').onclick = () => setRecType('income');
-document.getElementById('recSaveBtn').onclick = async () => {
-  const amount = parseFloat(document.getElementById('rAmount').value);
-  const day = Math.min(28, Math.max(1, parseInt(document.getElementById('rDay').value) || 1));
-  const startDate = document.getElementById('rStart').value;
-  if(!amount || amount <= 0 || !startDate){ alert('Please enter a valid amount and starting date.'); return; }
-  const rule = {
-    id:'rec_'+Date.now()+'_'+Math.random().toString(36).slice(2,6),
-    type: recCurrentType,
-    note: document.getElementById('rNote').value.trim(),
-    category: document.getElementById('rCategory').value,
-    amount, day,
-    startMonth: monthKey(startDate),
-    active: true
-  };
-  state.recurring.push(rule);
-  await saveRecurring();
-  processRecurring();
-  recOverlay.classList.remove('open');
-  renderAll();
-};
+        <div class="skill-card glass-card" data-reveal="fade-up">
+          <div class="skill-card-head">
+            <i class="fa-solid fa-network-wired skill-icon"></i>
+            <span class="skill-name">Networking</span>
+            <span class="skill-percent">80%</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" data-percent="80"></div></div>
+        </div>
 
-/* ---------------- Init ---------------- */
-(async function init(){
-  try{
-    const last = await window.storage.get('budgetly:lastUser', false);
-    if(last && last.value) document.getElementById('loginName').value = last.value.replace(/_/g,' ');
-  }catch(e){}
-})();
-</script>
+        <div class="skill-card glass-card" data-reveal="fade-up">
+          <div class="skill-card-head">
+            <i class="fa-brands fa-python skill-icon"></i>
+            <span class="skill-name">Python scripting</span>
+            <span class="skill-percent">88%</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" data-percent="88"></div></div>
+        </div>
+
+          <div class="progress-track"><div class="progress-fill" data-percent="78"></div></div>
+        </div>
+
+        <div class="skill-card glass-card" data-reveal="fade-up">
+          <div class="skill-card-head">
+            <i class="fa-brands fa-html5 skill-icon"></i>
+            <span class="skill-name">HTML</span>
+            <span class="skill-percent">95%</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" data-percent="95"></div></div>
+        </div>
+
+        <div class="skill-card glass-card" data-reveal="fade-up">
+          <div class="skill-card-head">
+            <i class="fa-brands fa-css3-alt skill-icon"></i>
+            <span class="skill-name">CSS</span>
+            <span class="skill-percent">90%</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" data-percent="90"></div></div>
+        </div>
+
+        
+
+        <div class="skill-card glass-card" data-reveal="fade-up">
+          <div class="skill-card-head">
+            <i class="fa-brands fa-git-alt skill-icon"></i>
+            <span class="skill-name">Git</span>
+            <span class="skill-percent">88%</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" data-percent="88"></div></div>
+        </div>
+
+        <div class="skill-card glass-card" data-reveal="fade-up">
+          <div class="skill-card-head">
+            <i class="fa-brands fa-github skill-icon"></i>
+            <span class="skill-name">GitHub</span>
+            <span class="skill-percent">90%</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" data-percent="90"></div></div>
+        </div>
+
+        <div class="skill-card glass-card" data-reveal="fade-up">
+          <div class="skill-card-head">
+            <i class="fa-brands fa-docker skill-icon"></i>
+            <span class="skill-name">Docker</span>
+            <span class="skill-percent">70%</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" data-percent="70"></div></div>
+        </div>
+
+        <div class="skill-card glass-card" data-reveal="fade-up">
+          <div class="skill-card-head">
+            <i class="fa-solid fa-cloud skill-icon"></i>
+            <span class="skill-name">Cloud Basics</span>
+            <span class="skill-percent">65%</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" data-percent="65"></div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS SECTION ============ -->
+  <section class="projects" id="projects">
+    <div class="section-container">
+      <div class="section-heading" data-reveal="fade-up">
+        <p class="section-eyebrow">My Recent Work</p>
+        <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+      </div>
+
+      <div class="project-filters" data-reveal="fade-up">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="ai">AI</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="portfolio">Portfolio</button>
+      </div>
+
+      <div class="projects-grid">
+
+        <article class="project-card glass-card" data-category="ai" data-reveal="fade-up">
+          <div class="project-image">
+            <i class="fa-solid fa-robot"></i>
+            <div class="project-overlay"></div>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">AI Content Repurposing Platform</h3>
+            <p class="project-desc">
+              An AI-powered web application that converts long-form content into
+              platform-specific content for YouTube, LinkedIn, Instagram, Twitter, and Blogs.
+            </p>
+            <div class="badge-row">
+              <span class="badge">HTML</span>
+              <span class="badge">CSS</span>
+              <span class="badge">Python</span>
+              <span class="badge">FastAPI</span>
+              <span class="badge">Gemini API</span>
+            </div>
+            <div class="project-actions">
+              <a href="#" class="btn-mini"><i class="fa-brands fa-github"></i> GitHub</a>
+              <a href="#" class="btn-mini btn-mini-fill"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card glass-card" data-category="web" data-reveal="fade-up">
+          <div class="project-image">
+            <i class="fa-solid fa-plane"></i>
+            <div class="project-overlay"></div>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Travel Website</h3>
+            <p class="project-desc">
+              Responsive travel booking website with a modern UI, smooth animations,
+              and a mobile-friendly design built for effortless trip discovery.
+            </p>
+            <div class="badge-row">
+              <span class="badge">HTML</span>
+              <span class="badge">CSS</span>
+              <span class="badge">JavaScript</span>
+            </div>
+            <div class="project-actions">
+              <a href="#" class="btn-mini"><i class="fa-brands fa-github"></i> GitHub</a>
+              <a href="#" class="btn-mini btn-mini-fill"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card glass-card" data-category="portfolio web" data-reveal="fade-up">
+          <div class="project-image">
+            <i class="fa-solid fa-briefcase"></i>
+            <div class="project-overlay"></div>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Portfolio Website</h3>
+            <p class="project-desc">
+              A responsive personal portfolio website showcasing skills, projects,
+              certifications, and contact information with modern UI/UX.
+            </p>
+            <div class="badge-row">
+              <span class="badge">HTML</span>
+              <span class="badge">CSS</span>
+              <span class="badge">JavaScript</span>
+            </div>
+            <div class="project-actions">
+              <a href="#" class="btn-mini"><i class="fa-brands fa-github"></i> GitHub</a>
+              <a href="#" class="btn-mini btn-mini-fill"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CERTIFICATIONS SECTION ============ -->
+  <section class="certifications" id="certifications">
+    <div class="section-container">
+      <div class="section-heading" data-reveal="fade-up">
+        <p class="section-eyebrow">Verified Learning</p>
+        <h2 class="section-title">My <span class="gradient-text">Certifications</span></h2>
+      </div>
+
+      <div class="cert-grid">
+        <div class="cert-card glass-card" data-reveal="fade-up">
+          <i class="fa-solid fa-network-wired cert-icon"></i>
+          <h3>Cisco</h3>
+          <p>Networking Fundamentals</p>
+        </div>
+        <div class="cert-card glass-card" data-reveal="fade-up">
+          <i class="fa-brands fa-google cert-icon"></i>
+          <h3>Google</h3>
+          <p>IT &amp; Cloud Essentials</p>
+        </div>
+        <div class="cert-card glass-card" data-reveal="fade-up">
+          <i class="fa-brands fa-microsoft cert-icon"></i>
+          <h3>Microsoft</h3>
+          <p>Azure Fundamentals</p>
+        </div>
+        <div class="cert-card glass-card" data-reveal="fade-up">
+          <i class="fa-solid fa-server cert-icon"></i>
+          <h3>IBM</h3>
+          <p>Data &amp; AI Foundations</p>
+        </div>
+        <div class="cert-card glass-card" data-reveal="fade-up">
+          <i class="fa-brands fa-linux cert-icon"></i>
+          <h3>Linux Foundation</h3>
+          <p>Linux System Administration</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESUME SECTION ============ -->
+  <section class="resume" id="resume">
+    <div class="section-container">
+      <div class="section-heading" data-reveal="fade-up">
+        <p class="section-eyebrow">My Journey On Paper</p>
+        <h2 class="section-title">My <span class="gradient-text">Resume</span></h2>
+      </div>
+
+      <div class="resume-card glass-card" data-reveal="fade-up">
+        <div class="resume-preview">
+          <i class="fa-solid fa-file-lines"></i>
+        </div>
+        <div class="resume-info">
+          <h3>Pranesh R V — Resume</h3>
+          <p>A complete overview of my education, skills, projects, and certifications —
+             updated for 2026. Download it to learn more about my journey as a developer.</p>
+          <a href="#" class="btn btn-primary" download>
+            <i class="fa-solid fa-download"></i> Download Resume
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ACHIEVEMENTS / TIMELINE SECTION ============ -->
+  <section class="achievements" id="achievements">
+    <div class="section-container">
+      <div class="section-heading" data-reveal="fade-up">
+        <p class="section-eyebrow">Milestones</p>
+        <h2 class="section-title">My <span class="gradient-text">Journey</span></h2>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item" data-reveal="fade-right">
+          <div class="timeline-icon"><i class="fa-solid fa-code"></i></div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-year">Year 1</span>
+            <h3>Started Programming</h3>
+            <p>Wrote my first lines of C and discovered a genuine love for logic and problem solving.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-reveal="fade-left">
+          <div class="timeline-icon"><i class="fa-solid fa-globe"></i></div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-year">Year 1</span>
+            <h3>Built First Website</h3>
+            <p>Designed and deployed my first HTML/CSS website, sparking my interest in front-end development.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-reveal="fade-right">
+          <div class="timeline-icon"><i class="fa-solid fa-diagram-project"></i></div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-year">Year 2</span>
+            <h3>Completed Major Projects</h3>
+            <p>Shipped multiple full-stack and AI-powered projects, from concept to deployment.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-reveal="fade-left">
+          <div class="timeline-icon"><i class="fa-solid fa-certificate"></i></div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-year">Year 2</span>
+            <h3>Earned Certifications</h3>
+            <p>Completed certifications from Cisco, Google, Microsoft, IBM, and the Linux Foundation.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-reveal="fade-right">
+          <div class="timeline-icon"><i class="fa-solid fa-rocket"></i></div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-year">Ongoing</span>
+            <h3>Learning New Technologies</h3>
+            <p>Continuously exploring cloud, DevOps, and AI tools to stay ahead in the tech landscape.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT SECTION ============ -->
+  <section class="contact" id="contact">
+    <div class="section-container">
+      <div class="section-heading" data-reveal="fade-up">
+        <p class="section-eyebrow">Let's Connect</p>
+        <h2 class="section-title">Contact <span class="gradient-text">Me</span></h2>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info" data-reveal="fade-right">
+          <div class="contact-item glass-card">
+            <i class="fa-solid fa-user"></i>
+            <div><span>Name</span><p>Pranesh R V</p></div>
+          </div>
+          <div class="contact-item glass-card">
+            <i class="fa-solid fa-envelope"></i>
+            <div><span>Email</span><p>praneshrv567@gmail.com</p></div>
+          </div>
+          <div class="contact-item glass-card">
+            <i class="fa-solid fa-phone"></i>
+            <div><span>Phone</span><p>+91 9361066465</p></div>
+          </div>
+          <div class="contact-item glass-card">
+            <i class="fa-brands fa-linkedin"></i>
+            <div><span>LinkedIn</span><p>linkedin.com/in/praneshrv</p></div>
+          </div>
+          <div class="contact-item glass-card">
+            <i class="fa-brands fa-github"></i>
+            <div><span>GitHub</span><p>github.com/praneshrv</p></div>
+          </div>
+          <div class="contact-item glass-card">
+            <i class="fa-solid fa-location-dot"></i>
+            <div><span>Location</span><p>Tamil Nadu, India</p></div>
+          </div>
+        </div>
+
+        <form class="contact-form glass-card" data-reveal="fade-left" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fName">Full Name</label>
+              <input type="text" id="fName" name="fName" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label for="fEmail">Email Address</label>
+              <input type="email" id="fEmail" name="fEmail" placeholder="you@example.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fSubject">Subject</label>
+            <input type="text" id="fSubject" name="fSubject" placeholder="What's this about?" required>
+          </div>
+          <div class="form-group">
+            <label for="fMessage">Message</label>
+            <textarea id="fMessage" name="fMessage" rows="5" placeholder="Tell me about your project..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary full-width">
+            <i class="fa-solid fa-paper-plane"></i> Send Message
+          </button>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="section-container footer-inner">
+    <a href="#home" class="logo">PRV<span class="logo-dot">.</span></a>
+    <p class="footer-tagline">Building clean code, one project at a time.</p>
+
+    <div class="footer-socials">
+      <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+      <a href="mailto:pranesh.rv@example.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+
+    <p class="footer-copy">&copy; 2026 Pranesh R V. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ============ BACK TO TOP ============ -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script src="script.js"></script>
 </body>
 </html>

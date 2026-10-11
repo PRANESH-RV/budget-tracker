@@ -1,0 +1,11 @@
+{
+  "name": "budgetly-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Budgetly - AI-assisted personal budgeting app with a secure server-side AI proxy",
+  "scripts": {
+    "dev": "node --env-file=.env dev-server.js",
+    "start": "node dev-server.js"
+  },
+  "engines": { "node": ">=20.6" }
+}
